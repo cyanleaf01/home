@@ -82,45 +82,60 @@
   </div>
 
   <script>
-    const productGrid = document.getElementById("product-grid");
-    const expandedView = document.getElementById("expanded-view");
+  const productGrid = document.getElementById("product-grid");
+  const expandedView = document.getElementById("expanded-view");
 
-    let originalCard = null;
+  let originalCard = null;
 
-    productGrid.addEventListener("click", (e) => {
-      const card = e.target.closest(".card");
-      if (!card) return;
+  // 🌟 Function to expand a card by ID
+  function expandCardById(id) {
+    const card = [...productGrid.children].find(
+      (c) => c.dataset.id === id
+    );
+    if (!card) return;
 
-      originalCard = card;
-      const id = card.dataset.id;
-      const imgSrc = card.querySelector("img").src;
-      const text = card.querySelector("p")?.innerText || `Card ${id}`;
+    originalCard = card;
+    const imgSrc = card.querySelector("img").src;
+    const text = card.querySelector("p")?.innerText || `Card ${id}`;
 
-      // Remove the card from the grid
-      productGrid.removeChild(card);
+    // Remove from grid
+    productGrid.removeChild(card);
 
-      // Show it in expanded view
-      expandedView.innerHTML = `
-        <div class="expanded-card">
-          <img src="${imgSrc}" />
-          <h2>${text}</h2>
-          <p>Details for ${text} go here.</p>
-          <button class="back-btn">Back to Grid</button>
-        </div>
-      `;
-      expandedView.style.display = "block";
-      expandedView.scrollIntoView({ behavior: "smooth" });
+    expandedView.innerHTML = `
+      <div class="expanded-card">
+        <img src="${imgSrc}" />
+        <h2>${text}</h2>
+        <p>Details for ${text} go here.</p>
+        <button class="back-btn">Back to Grid</button>
+      </div>
+    `;
+    expandedView.style.display = "block";
 
-      // Back button listener
-      const backBtn = expandedView.querySelector(".back-btn");
-      backBtn.addEventListener("click", () => {
-        // Add card back to grid
-        productGrid.appendChild(originalCard);
-        expandedView.innerHTML = "";
-        expandedView.style.display = "none";
-        originalCard = null;
-      });
+    const backBtn = expandedView.querySelector(".back-btn");
+    backBtn.addEventListener("click", () => {
+      productGrid.appendChild(originalCard);
+      expandedView.innerHTML = "";
+      expandedView.style.display = "none";
+      originalCard = null;
     });
-  </script>
+  }
+
+  // Handle manual clicks (existing functionality)
+  productGrid.addEventListener("click", (e) => {
+    const card = e.target.closest(".card");
+    if (!card) return;
+    expandCardById(card.dataset.id);
+  });
+
+  // 🌟 On load: check for URL parameter
+  window.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    const productId = params.get("product");
+    if (productId) {
+      setTimeout(() => expandCardById(productId), 200); // small delay for DOM load
+    }
+  });
+</script>
+
 </body>
 </html>
