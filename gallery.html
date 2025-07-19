@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #product-section {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    #expanded-view {
+      display: none;
+    }
+
+    .product-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .card {
+      flex: 1 1 calc(25% - 15px);
+      min-width: 150px;
+      padding: 15px;
+      background-color: skyblue;
+      cursor: pointer;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .card img {
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .expanded-card {
+      background-color: skyblue;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .expanded-card img {
+      width: 100%;
+      max-width: 400px;
+      margin-bottom: 10px;
+    }
+
+    .back-btn {
+      margin-top: 15px;
+      padding: 8px 12px;
+      background-color: #333;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div id="product-section">
+    <div id="expanded-view"></div>
+
+    <div class="product-grid" id="product-grid">
+      <div class="card" data-id="1"><img src="Photos/Sky.jpg" /><p>Card 1</p></div>
+      <div class="card" data-id="2"><img src="Photos/Spidy.jpg" /><p>Card 2</p></div>
+      <div class="card" data-id="3"><img src="Photos/zoro.jpg" /><p>Card 3</p></div>
+      <div class="card" data-id="4"><img src="Photos/Sky.jpg" /><p>Card 4</p></div>
+      <div class="card" data-id="5"><img src="Photos/Spidy.jpg" /><p>Card 5</p></div>
+      <div class="card" data-id="6"><img src="Photos/zoro.jpg" /><p>Card 6</p></div>
+      <div class="card" data-id="7"><img src="Photos/Sky.jpg" /><p>Card 7</p></div>
+      <div class="card" data-id="8"><img src="Photos/Spidy.jpg" /><p>Card 8</p></div>
+      <div class="card" data-id="9"><img src="Photos/zoro.jpg" /><p>Card 9</p></div>
+      <div class="card" data-id="10"><img src="Photos/Sky.jpg" /><p>Card 10</p></div>
+    </div>
+  </div>
+
+  <script>
+    const productGrid = document.getElementById("product-grid");
+    const expandedView = document.getElementById("expanded-view");
+
+    let originalCard = null;
+
+    productGrid.addEventListener("click", (e) => {
+      const card = e.target.closest(".card");
+      if (!card) return;
+
+      originalCard = card;
+      const id = card.dataset.id;
+      const imgSrc = card.querySelector("img").src;
+      const text = card.querySelector("p")?.innerText || `Card ${id}`;
+
+      // Remove the card from the grid
+      productGrid.removeChild(card);
+
+      // Show it in expanded view
+      expandedView.innerHTML = `
+        <div class="expanded-card">
+          <img src="${imgSrc}" />
+          <h2>${text}</h2>
+          <p>Details for ${text} go here.</p>
+          <button class="back-btn">Back to Grid</button>
+        </div>
+      `;
+      expandedView.style.display = "block";
+      expandedView.scrollIntoView({ behavior: "smooth" });
+
+      // Back button listener
+      const backBtn = expandedView.querySelector(".back-btn");
+      backBtn.addEventListener("click", () => {
+        // Add card back to grid
+        productGrid.appendChild(originalCard);
+        expandedView.innerHTML = "";
+        expandedView.style.display = "none";
+        originalCard = null;
+      });
+    });
+  </script>
+</body>
+</html>
