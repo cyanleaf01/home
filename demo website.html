@@ -204,20 +204,20 @@
   </style>
 </head>
 <body>
-  <div class="queen"><img class="queen1" src="Photos/kaf.jpg"></div>
+  <div class="queen"><img class="queen1" src="kaf.jpg"></div>
 
   <div class="carousel-wrapper" id="carouselWrapper">
     <div class="carousel" id="carousel">
-      <div class="card"><img src="Photos/Sky.jpg" /></div>
-      <div class="card"><img src="Photos/Spidy.jpg" /></div>
-      <div class="card"><img src="Photos/zoro.jpg" /></div>
-      <div class="card"><img src="Photos/Sky.jpg" /></div>
-      <div class="card"><img src="Photos/Spidy.jpg" /></div>
-      <div class="card"><img src="Photos/zoro.jpg" /></div>
-      <div class="card"><img src="Photos/Sky.jpg" /></div>
-      <div class="card"><img src="Photos/Spidy.jpg" /></div>
-      <div class="card"><img src="Photos/zoro.jpg" /></div>
-      <div class="card"><img src="Photos/Sky.jpg" /></div>
+      <div class="card"><img src="Sky.jpg" /></div>
+      <div class="card"><img src="Spidy.jpg" /></div>
+      <div class="card"><img src="zoro.jpg" /></div>
+      <div class="card"><img src="Sky.jpg" /></div>
+      <div class="card"><img src="Spidy.jpg" /></div>
+      <div class="card"><img src="zoro.jpg" /></div>
+      <div class="card"><img src="Sky.jpg" /></div>
+      <div class="card"><img src="Spidy.jpg" /></div>
+      <div class="card"><img src="zoro.jpg" /></div>
+      <div class="card"><img src="Sky.jpg" /></div>
     </div>
   </div>
 
@@ -232,27 +232,28 @@
   <section class="product-preview">
   <h2>Featured Collections</h2>
   <div class="preview-grid">
-    <div class="preview-card">
-      <img src="Photos/Spidy.jpg" alt="Spiderman" />
-      <div class="info">
-        <h3>Spidey Vision</h3>
-        <p>Catch the hero in motion with immersive depth.</p>
-      </div>
-    </div>
-    <div class="preview-card">
-      <img src="Photos/zoro.jpg" alt="Zoro" />
-      <div class="info">
-        <h3>Zoro's Edge</h3>
-        <p>Slicing through the ordinary into 3D excellence.</p>
-      </div>
-    </div>
-    <div class="preview-card">
-      <img src="Photos/Sky.jpg" alt="Sky" />
+    <div class="preview-card" onclick="goToProduct(1)>
+      <img src="Sky.jpg" alt="Sky" />
       <div class="info">
         <h3>Sky Realm</h3>
         <p>Elevate your vision with sky-high designs.</p>
       </div>
     </div>
+    <div class="preview-card" onclick="goToProduct(2)>
+      <img src="Spidy.jpg" alt="Spiderman" />
+      <div class="info">
+        <h3>Spidey Vision</h3>
+        <p>Catch the hero in motion with immersive depth.</p>
+      </div>
+    </div>
+    <div class="preview-card" onclick="goToProduct(3)>
+      <img src="zoro.jpg" alt="Zoro" />
+      <div class="info">
+        <h3>Zoro's Edge</h3>
+        <p>Slicing through the ordinary into 3D excellence.</p>
+      </div>
+    </div>
+    
   </div>
 </section>
 <section>
@@ -345,6 +346,20 @@
     positionCards(currentIndex);
   });
 </script>
+  <script>
+    
+  function goToProduct(id) {
+    // Navigate to second page with product ID in URL
+    window.location.href = `second.html?product=${id}`;
+  }
+
+  // Also update the Explore Gallery button
+  document.querySelector("button").addEventListener("click", () => {
+    window.location.href = "gallery.html";
+  });
+
+
+  </script>
 
 
 </body>
