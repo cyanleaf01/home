@@ -3,7 +3,79 @@
 <head>
   <meta charset="UTF-8">
   <title>Fixed 3D Carousel</title>
+  <meta name="keywords" content="Shotoronji, traditional mats, handmade rugs, Bangladeshi carpets, artisanal decor, eco-friendly rugs, heritage weaving, cultural home decor, Bangladeshi, rugs, rug, weaving, decor, home decor, crafts, arts, arts and crafts, handmade, hand crafts, traditional">
+  <meta name="description" content="Discover handcrafted Shotoronji mats — timeless Bangladeshi rugs made with tradition and elegance. Explore our collection today.">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <style>
+    
+    header {
+      background-color: #00897b;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
+
+    header h1 {
+      font-size: 1.4em;
+    }
+
+    .hamburger {
+      font-size: 40px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .menu {
+      display: none;
+      position: absolute;
+      top: 60px;
+      left: 10px;
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      min-width: 180px;
+      z-index: 1000;
+    }
+
+    .menu a {
+      display: block;
+      padding: 12px 16px;
+      color: #00897b;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background-color 0.3s;
+    }
+
+    .menu a:hover {
+      background-color: #e0f7f5;
+    }
+
+    .menu a.disabled {
+  pointer-events: none;
+  color: gray;
+  background-color: #f5f5f5;
+  cursor: default;
+}
+.menu a.disabled:hover {
+  background-color: #f5f5f5;
+}
+
+
+
+
+
+
+
+
+    
+
+
+
     body {
       margin: 0;
       background: #f8f5f2;
@@ -25,6 +97,29 @@
       width: 100%;
       height: 100%;
       opacity: 0.4;
+    }
+
+    @media (max-width: 768px) {
+      .queen{
+      position: fixed;
+      z-index: -1;
+      pointer-events: none;
+      left: 20%;
+      top: 35%;
+      width: 60%;
+      height: 70%;
+    }
+    }
+    @media (max-width: 480px) {
+      .queen{
+      position: fixed;
+      z-index: -1;
+      pointer-events: none;
+      left: 10%;
+      top: 35%;
+      width: 80%;
+      height: 70%;
+    }
     }
 
     .carousel-wrapper {
@@ -95,7 +190,7 @@
     .page-content {
       position: relative;
       z-index: 1;
-      margin-top: 600px;
+      margin-top: 500px;
       padding: 2rem;
     }
 
@@ -128,11 +223,12 @@
       gap: 30px;
     }
 
+      
     .preview-card {
       width: 300px;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+      background: #fffdf7;
+      border: 1px solid #e0d9ce;
+      box-shadow: 0 8px 20px rgba(138, 113, 93, 0.15);
       overflow: hidden;
       transition: transform 0.3s ease;
     }
@@ -194,8 +290,87 @@
   transform: translateY(-2px);
 }
 
+/* Page transition wrapper */
+.fade-wrapper {
+  opacity: 1;
+  transition: opacity 0.6s ease;
+}
+
+.fade-wrapper.fade-out {
+  opacity: 0;
+}
 
 
+.whatsapp-float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25D366;
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+
+.whatsapp-float img {
+  width: 35px;
+  height: 35px;
+}
+
+.filter-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px auto 30px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.filter-wrapper label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #4a2d0b;
+  letter-spacing: 0.5px;
+}
+
+.filter-wrapper select {
+  appearance: none;
+  background: linear-gradient(145deg, #f0e6d2, #fffaf3);
+  border: 2px solid #b6824c;
+  border-radius: 12px;
+  padding: 12px 40px 12px 18px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #4a2d0b;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  background-image: url("data:image/svg+xml,%3Csvg fill='%23664422' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 20px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.filter-wrapper select:hover {
+  border-color: #d1945c;
+  box-shadow: 0 0 8px rgba(209, 148, 92, 0.3);
+}
+
+.filter-wrapper select:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(209, 148, 92, 0.6);
+}
 
 
 
@@ -204,53 +379,98 @@
   </style>
 </head>
 <body>
-  <div class="queen"><img class="queen1" src="kaf.jpg"></div>
-
-  <div class="carousel-wrapper" id="carouselWrapper">
-    <div class="carousel" id="carousel">
-      <div class="card"><img src="Sky.jpg" /></div>
-      <div class="card"><img src="Spidy.jpg" /></div>
-      <div class="card"><img src="zoro.jpg" /></div>
-      <div class="card"><img src="Sky.jpg" /></div>
-      <div class="card"><img src="Spidy.jpg" /></div>
-      <div class="card"><img src="zoro.jpg" /></div>
-      <div class="card"><img src="Sky.jpg" /></div>
-      <div class="card"><img src="Spidy.jpg" /></div>
-      <div class="card"><img src="zoro.jpg" /></div>
-      <div class="card"><img src="Sky.jpg" /></div>
+  <header>
+    <div class="hamburger" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
     </div>
-  </div>
+    <h1>Shotoronji Home</h1>
+    <div class="menu" id="dropdownMenu">
+      <a class="disabled" href="#">🏠 Home</a>
 
-  <div class="page-content">
-    <h1>Welcome to My 3D Shop</h1>
-    <p>Scroll down to see the effect...</p>
+      <a href="gallery.html">🖼️ All Products</a>
+      <a href="gallery.html?filter=3x5">3×5 ft Products</a>
+      <a href="gallery.html?filter=2x5">2×5 ft Products</a>
+      <a href="gallery.html?filter=5x5">5×5 ft Products</a>
+    </div>
+  </header>
+
+  <div class="fade-wrapper">
+    <div class="queen"><img class="queen1" src="Photos/kaf.jpg"></div>
+    <div class="carousel-wrapper" id="carouselWrapper">
+      <div class="carousel" id="carousel">
+        <div class="card"><img src="Photos/pdt1.png" /></div>
+        <div class="card"><img src="Photos/pdt2.png" /></div>
+        <div class="card"><img src="Photos/pdt3.png" /></div>
+        <div class="card"><img src="Photos/pdt4.png" /></div>
+        <div class="card"><img src="Photos/pdt5.png" /></div>
+        <div class="card"><img src="Photos/pdt6.png" /></div>
+        <div class="card"><img src="Photos/pdt7.jpg" /></div>
+        <div class="card"><img src="Photos/pdt8.jpg" /></div>
+        <div class="card"><img src="Photos/pdt9.jpg" /></div>
+        <div class="card"><img src="Photos/pdt10.jpg" /></div>
+      </div>
+    </div>
+  
+
+    <div class="page-content">
+      <div id="carousel-caption" style="
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: bold;
+        font-size: 40px;
+        color: #4a3820;
+        margin-top: 0px;
+        min-height: 40px;
+        transition: opacity 0.5s ease;
+        ">
+      </div>
+      <h1 style="text-align: center; font-size: 3rem;">Discover the Art of Shotoronji</h1>
+      <p style="text-align: center; font-size: 1.1rem; max-width: 700px; margin: 20px auto;">
+        Handwoven with passion, crafted by tradition — explore authentic Shotoronji mats from the heart of Bangladesh.
+      </p>
+
+      
     
-   
 
-  </div>
+    </div>
  <!-- Product Preview RIGHT AFTER page content -->
   <section class="product-preview">
-  <h2>Featured Collections</h2>
+  <h2>Our Featured Shotoronjis</h2>
+
+  <div class="filter-wrapper">
+  <label for="sizeFilter">Filter by Size</label>
+  <select id="sizeFilter">
+    <option value="all">All Sizes</option>
+    <option value="3x5">3x5 feet</option>
+    <option value="2x5">2x5 feet</option>
+    <option value="5x5">5x5 feet</option>
+  </select>
+</div>
+
+
+
   <div class="preview-grid">
-    <div class="preview-card" onclick="goToProduct(1)>
-      <img src="Sky.jpg" alt="Sky" />
+    <div class="preview-card" data-size="3x5" onclick="goToProduct('1')">
+      <img src="Photos/pdt1.png" alt="Sky" />
       <div class="info">
-        <h3>Sky Realm</h3>
-        <p>Elevate your vision with sky-high designs.</p>
+        <h3>Heritage Red</h3>
+<p>Classic red pattern with traditional texture and artisan feel.</p>
+        
       </div>
     </div>
-    <div class="preview-card" onclick="goToProduct(2)>
-      <img src="Spidy.jpg" alt="Spiderman" />
+    <div class="preview-card" data-size="2x5" onclick="goToProduct('5')">
+      <img src="Photos/pdt3.png" alt="Spiderman" />
       <div class="info">
-        <h3>Spidey Vision</h3>
-        <p>Catch the hero in motion with immersive depth.</p>
+        <h3>Traditional Realm</h3>
+        <p>Elevate your vision with traditional design.</p>
+
       </div>
     </div>
-    <div class="preview-card" onclick="goToProduct(3)>
-      <img src="zoro.jpg" alt="Zoro" />
+    <div class="preview-card" data-size="5x5" onclick="goToProduct('9')">
+      <img src="Photos/pdt6.png" alt="Zoro" />
       <div class="info">
-        <h3>Zoro's Edge</h3>
-        <p>Slicing through the ordinary into 3D excellence.</p>
+        <h3>Artist's Edge</h3>
+        <p>Slicing through the ordinary color into artistic excellence.</p>
       </div>
     </div>
     
@@ -260,18 +480,35 @@
   <div class="cta">
   <h2>Like what you see?</h2>
   <button>Explore the Full Gallery</button><br>
-  <button>Order Now!!!</button>
+  <a href="https://wa.me/8801717975521"><button>Order Now!!!</button></a>
 </div>
 </section>
   
-
+  </div>
   
 
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/8801717975521" target="_blank" class="whatsapp-float" title="Order on WhatsApp">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
+</a>
 
 
 
 
     <script>
+      const captions = [
+  "Tradition woven into elegance.",
+  "Every mat tells a story.",
+  "Feel the heritage beneath your feet.",
+  "Inspired by generations of artisans.",
+  "Colorful culture, crafted by hand.",
+  "Rooted in Bangladesh’s soul.",
+  "Threads of beauty and history.",
+  "Woven warmth for your home.",
+  "Rustic charm, modern appeal.",
+  "Timeless textures from tradition."
+];
+
   const carousel = document.getElementById("carousel");
   const cards = carousel.querySelectorAll(".card");
   const wrapper = document.getElementById("carouselWrapper");
@@ -308,6 +545,14 @@
       card.classList.toggle("active", isActive);
       card.style.transform = transform;
     }
+    // Update caption text
+const captionEl = document.getElementById("carousel-caption");
+captionEl.style.opacity = 0;
+setTimeout(() => {
+  captionEl.textContent = captions[activeIndex];
+  captionEl.style.opacity = 1;
+}, 300);
+
   }
 
   function startRotation() {
@@ -346,21 +591,80 @@
     positionCards(currentIndex);
   });
 </script>
-  <script>
-    
+<script>
   function goToProduct(id) {
     // Navigate to second page with product ID in URL
-    window.location.href = `second.html?product=${id}`;
+    window.location.href = `gallery.html?product=${id}`;
   }
 
   // Also update the Explore Gallery button
   document.querySelector("button").addEventListener("click", () => {
     window.location.href = "gallery.html";
   });
+</script>
 
+<script>
+  function fadeAndRedirect(url) {
+    const wrapper = document.querySelector(".fade-wrapper");
+    wrapper.classList.add("fade-out");
+    setTimeout(() => {
+      window.location.href = url;
+    }, 500); // matches CSS transition time
+  }
 
+  function goToProduct(id) {
+    const selectedSize = document.getElementById("sizeFilter").value;
+    const filterParam = selectedSize !== "all" ? `&filter=${selectedSize}` : "";
+    fadeAndRedirect(`gallery.html?product=${id}${filterParam}`);
+  }
+
+  // Update both buttons
+  const buttons = document.querySelectorAll(".cta button");
+  buttons[0].addEventListener("click", () => fadeAndRedirect("gallery.html"));
+  buttons[1].addEventListener("click", () => alert("Order action here!")); // or customize
+</script>
+
+<script>
+  function toggleMenu() {
+    alert("Menu clicked! Add dropdown or sidebar here.");
+    // Or implement a sliding menu later
+  }
+</script>
+<script>
+  document.getElementById("sizeFilter").addEventListener("change", function () {
+    const selectedSize = this.value;
+    const cards = document.querySelectorAll(".preview-card");
+
+    cards.forEach(card => {
+      const cardSize = card.getAttribute("data-size");
+      if (selectedSize === "all" || cardSize === selectedSize) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  });
+</script>
+<script>
+    function toggleMenu() {
+      const menu = document.getElementById("dropdownMenu");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
+    }
+; 
+    window.addEventListener("click", function(e) {
+      const menu = document.getElementById("dropdownMenu");
+      const burger = document.querySelector(".hamburger");
+
+      if (!menu.contains(e.target) && !burger.contains(e.target)) {
+        menu.style.display = "none";
+      }
+    });
   </script>
 
+
+<footer style="text-align:center; padding: 30px; background:#eee; font-size: 0.9rem; font-weight: bold;">
+  © 2025 Shotoronji Heritage. All rights reserved.
+</footer>
 
 </body>
 </html>
